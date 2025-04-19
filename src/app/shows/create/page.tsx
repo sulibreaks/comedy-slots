@@ -52,7 +52,9 @@ export default function CreateShowPage() {
         throw new Error(data.error || 'Failed to create show');
       }
 
-      router.push('/dashboard/shows');
+      // Show success message and redirect to home page
+      alert('Show created successfully! Redirecting to calendar...');
+      router.push('/');
       router.refresh();
     } catch (error) {
       if (error instanceof z.ZodError) {
