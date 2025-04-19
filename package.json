@@ -4,11 +4,14 @@
   "private": true,
   "scripts": {
     "dev": "next dev",
-    "build": "prisma generate && next build",
-    "start": "prisma migrate deploy && next start",
+    "build": "prisma generate && prisma migrate deploy && prisma db seed && next build",
+    "start": "next start",
     "seed": "node -r @swc-node/register prisma/seed.ts",
     "lint": "next lint",
     "postinstall": "prisma generate"
+  },
+  "prisma": {
+    "seed": "node -r @swc-node/register prisma/seed.ts"
   },
   "dependencies": {
     "@headlessui/react": "^1.7.17",
