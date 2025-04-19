@@ -1,4 +1,17 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Comedy Slots
+
+A platform for comedians to book performance slots and promoters to manage shows.
+
+## Deployment
+
+This application is deployed on Railway.app.
+
+## Local Development
+
+```bash
+npm install
+npm run dev
+```
 
 ## Getting Started
 
