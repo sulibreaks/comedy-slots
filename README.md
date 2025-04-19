@@ -2,6 +2,14 @@
 
 A platform for comedians to book performance slots and promoters to manage shows.
 
+## Features
+
+- Comedian and Promoter roles
+- Show booking system
+- Calendar view
+- Email notifications
+- Real-time updates
+
 ## Deployment
 
 This application is deployed on Railway.app.
