@@ -1,6 +1,6 @@
 [build]
 builder = "nixpacks"
-buildCommand = "npm install && npm run build"
+buildCommand = "npm ci && npm run build"
 
 [deploy]
 startCommand = "npm run start"
@@ -9,4 +9,14 @@ healthcheckTimeout = 100
 restartPolicyType = "on_failure"
 
 [phases.setup]
-nixPkgs = ["nodejs", "npm"] 
+nixPkgs = ["nodejs", "npm"]
+cmds = ["npm config set fetch-retry-maxtimeout 600000"]
+
+[phases.build]
+cmds = ["npm ci --production=false"]
+
+[phases.install]
+cmds = ["npm run build"]
+
+[phases.cleanup]
+cmds = ["npm prune --production"] 
