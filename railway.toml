@@ -1,9 +1,12 @@
 [build]
 builder = "nixpacks"
-buildCommand = "npm run build"
+buildCommand = "npm install && npm run build"
 
 [deploy]
 startCommand = "npm run start"
 healthcheckPath = "/"
 healthcheckTimeout = 100
-restartPolicyType = "on_failure" 
+restartPolicyType = "on_failure"
+
+[phases.setup]
+nixPkgs = ["nodejs", "npm"] 
