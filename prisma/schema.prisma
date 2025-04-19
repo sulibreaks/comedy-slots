@@ -34,11 +34,12 @@ model Show {
   endTime     DateTime
   venue       String
   maxSlots    Int
-  promoterId  String
-  promoter    User      @relation("PromoterShows", fields: [promoterId], references: [id])
-  bookings    Booking[]
   createdAt   DateTime  @default(now())
   updatedAt   DateTime  @updatedAt
+
+  promoter    User      @relation("PromoterShows", fields: [promoterId], references: [id])
+  promoterId  String
+  bookings    Booking[]
 }
 
 model Booking {

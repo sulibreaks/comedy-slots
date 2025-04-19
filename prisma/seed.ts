@@ -1,10 +1,12 @@
 import { PrismaClient } from '@prisma/client';
 import { add } from 'date-fns';
+import { hash } from 'bcryptjs';
 
 const prisma = new PrismaClient();
 
 async function main() {
   // Create a test promoter
+  const hashedPassword = await hash('test123', 12);
   const promoter = await prisma.user.upsert({
     where: { email: 'promoter@example.com' },
     update: {},
@@ -12,6 +14,7 @@ async function main() {
       email: 'promoter@example.com',
       name: 'Test Promoter',
       role: 'PROMOTER',
+      password: hashedPassword,
     },
   });
 
@@ -25,7 +28,7 @@ async function main() {
       endTime: add(now, { days: 1, hours: 4 }),
       venue: 'The Laugh Factory',
       maxSlots: 5,
-      userId: promoter.id,
+      promoterId: promoter.id
     },
     {
       title: 'Open Mic Night',
@@ -34,7 +37,7 @@ async function main() {
       endTime: add(now, { days: 2, hours: 5 }),
       venue: 'Comedy Club Downtown',
       maxSlots: 8,
-      userId: promoter.id,
+      promoterId: promoter.id
     },
     {
       title: 'Weekend Comedy Showcase',
@@ -43,7 +46,7 @@ async function main() {
       endTime: add(now, { days: 3, hours: 6 }),
       venue: 'City Theater',
       maxSlots: 6,
-      userId: promoter.id,
+      promoterId: promoter.id
     },
   ];
 
