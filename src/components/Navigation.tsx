@@ -38,6 +38,12 @@ export default function Navigation() {
                 {session.user.role === 'PROMOTER' && (
                   <>
                     <Link
+                      href="/shows/create"
+                      className={`rounded-md px-3 py-2 text-sm font-medium ${isActive('/shows/create')}`}
+                    >
+                      Create Show
+                    </Link>
+                    <Link
                       href="/dashboard/shows"
                       className={`rounded-md px-3 py-2 text-sm font-medium ${isActive('/dashboard/shows')}`}
                     >
@@ -98,6 +104,12 @@ export default function Navigation() {
 
           {session.user.role === 'PROMOTER' && (
             <>
+              <Link
+                href="/shows/create"
+                className={`block rounded-md px-3 py-2 text-base font-medium ${isActive('/shows/create')}`}
+              >
+                Create Show
+              </Link>
               <Link
                 href="/dashboard/shows"
                 className={`block rounded-md px-3 py-2 text-base font-medium ${isActive('/dashboard/shows')}`}
