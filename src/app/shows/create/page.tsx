@@ -16,7 +16,10 @@ const createShowSchema = z.object({
   startTime: z.string(),
   endTime: z.string(),
   venue: z.string().min(1, 'Venue is required'),
-  maxSlots: z.number().min(1, 'At least one slot is required'),
+  maxSlots: z.preprocess(
+    (val) => Number(val),
+    z.number().min(1, 'At least one slot is required')
+  ),
 });
 
 export default function CreateShowPage() {

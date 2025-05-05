@@ -2,7 +2,7 @@ import { NextResponse } from 'next/server';
 import { PrismaClient } from '@prisma/client';
 import { getServerSession } from 'next-auth';
 import { z } from 'zod';
-import { authOptions } from '../auth/[...nextauth]/auth.config';
+import { authOptions } from '@/app/api/auth/[...nextauth]/route';
 
 const prisma = new PrismaClient();
 
@@ -13,7 +13,10 @@ const createShowSchema = z.object({
   startTime: z.string().transform(str => new Date(str)),
   endTime: z.string().transform(str => new Date(str)),
   venue: z.string().min(1, 'Venue is required'),
-  maxSlots: z.number().min(1, 'At least one slot is required'),
+  maxSlots: z.preprocess(
+    (val) => Number(val),
+    z.number().min(1, 'At least one slot is required')
+  ),
 });
 
 export async function POST(request: Request) {
